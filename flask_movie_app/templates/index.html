@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Movie API Client</title>
+    <title>Movies Library</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='assets/style.css') }}" />
     <script src="{{ url_for('static', filename='assets/api.js') }}" defer></script>
     <script src="{{ url_for('static', filename='assets/index.js') }}" defer></script>
@@ -38,21 +38,17 @@
         background-size: cover;
       "
     >
-      <span id="close_info">X</span>
+      <span id="close_info"></span>
       <div id="movie_info">
         <div id="movie_info_row_1">
-          <h2 id="movie_info_title">Title (year)</h2>
-          <p id="movie_info_runtime">runtime</p>
+          <h2 id="movie_info_title"></h2>
+          <p id="movie_info_runtime"></p>
         </div>
-        <p id="movie_info_tagline">"tagline"</p>
-        <p id="movie_info_genre">genre, genre, genre</p>
+        <p id="movie_info_tagline"></p>
+        <p id="movie_info_genre"></p>
         <p id="movie_info_overview">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi nostrum,
-          exercitationem odit asperiores cumque harum modi aliquam tempore
-          inventore quibusdam rerum necessitatibus sapiente laboriosam ad
-          pariatur aperiam praesentium. Nesciunt, totam!
         </p>
-        <p id="movie_info_rating">4.5/10 (4523 votes)</p>
+        <p id="movie_info_rating"></p>
       </div>
     </div>
   </body>
