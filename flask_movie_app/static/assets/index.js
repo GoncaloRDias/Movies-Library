@@ -1,5 +1,7 @@
+// Cria uma nova instância da classe TMD_Rest
 const tmd = new TMD_Rest()
 
+// Função para gerar o HTML do "card" dos filmes
 function generateCard(id, title, year, genres, poster, rating) {
     return `
         <div class="card" style="background-image: url(${poster}" data-movieId="${id}")">
@@ -14,6 +16,7 @@ function generateCard(id, title, year, genres, poster, rating) {
         `
 }
 
+// Função para gerar uma lista de "cards" a partir de uma lista de filmes
 function getCardList(movies) {
     let list = ""
     movies.forEach(movie => {
@@ -32,6 +35,7 @@ function getCardList(movies) {
     return list
 }
 
+// Função assíncrona para mostrar detalhes do filmes ao clicar no mesmo
 async function cardClickHandler(e) {
     const movieId = e.target.dataset.movieid;
     if (movieId) {
@@ -61,7 +65,9 @@ async function cardClickHandler(e) {
     }
 }
 
+// Evento que aguarda o carregamento completo do DOM
 document.addEventListener('DOMContentLoaded', async () => {
+    // Cria variaveis para obter as referências dos elementos HTML necessários
     const searchBox = document.querySelector('.searchBox');
     const trendingBtn = document.getElementById('trending_btn');
     const popularBtn = document.getElementById('popular_btn');
@@ -71,6 +77,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const movieInfoContainer = document.getElementById('movie_info_container');
     const movieInfoClose = document.getElementById('close_info');
 
+    // Evento para procurar filmes na search bar
     searchBox.addEventListener('input', async function () {
         const query = this.value;
         if (query.length < 3) return;
@@ -81,6 +88,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         moviesList.innerHTML += getCardList(searchResultMovies)
     });
 
+    // Evento para quando clicarmos no botão mostrar os filmes das tendencias
     trendingBtn.addEventListener('click', async function () {
         subtitle.innerText = `Showing trending movies`
         console.log('Trending button clicked');
@@ -91,6 +99,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         moviesList.innerHTML += getCardList(trendingMovies)
     });
 
+    // Evento para quando clicarmos no botão mostrar os filmes populares
     popularBtn.addEventListener('click', async function () {
         subtitle.innerText = `Showing popular movies`
         console.log('Popular button clicked');
@@ -101,6 +110,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         moviesList.innerHTML += getCardList(popularMovies)
     });
 
+    // Evento para quando clicarmos no botão mostrar os filmes melhor avaliados
     topRatedBtn.addEventListener('click', async function () {
         subtitle.innerText = `Showing top rated movies`
         console.log('Top Rated button clicked');
@@ -111,11 +121,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         moviesList.innerHTML += getCardList(topRatedMovies)
     });
 
+    // Evento ara quando clicarmos no botão de fechar, fechar detalhes do filme
     movieInfoClose.addEventListener('click', function () {
         movieInfoContainer.style.display = 'none'
     });
 
+    // Evento para quando clicamos no card
     document.body.addEventListener('click', cardClickHandler);
 
+    // Simula um clique no botão de filmes tendências para carregar os filmes das tendências ao carregar a página
     trendingBtn.click();
 });
